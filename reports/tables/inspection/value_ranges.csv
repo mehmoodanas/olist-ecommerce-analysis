@@ -1,0 +1,6 @@
+measure,min_value,max_value,zero_or_negative
+order_items.price,0.85,6735.0,0
+order_items.freight_value,0.0,409.68,383
+order_payments.payment_value,0.0,13664.08,9
+order_payments.payment_installments,0.0,24.0,2
+order_reviews.review_score,1.0,5.0,0

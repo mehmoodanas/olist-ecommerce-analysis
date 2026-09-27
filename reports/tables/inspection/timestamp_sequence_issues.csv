@@ -1,0 +1,5 @@
+check_name,orders
+approved before purchase,0
+handed to carrier before purchase,166
+delivered to customer before purchase,0
+delivered to customer before handed to carrier,23

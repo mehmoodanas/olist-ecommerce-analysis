@@ -1,0 +1,11 @@
+table_name,key_column,rows,distinct_key
+raw_orders,order_id,99441,99441
+raw_order_items,order_id + order_item_id,112650,112650
+raw_order_payments,order_id + payment_sequential,103886,103886
+raw_order_reviews,review_id,99224,98410
+raw_order_reviews,review_id + order_id,99224,99224
+raw_customers,customer_id,99441,99441
+raw_customers,customer_unique_id,99441,96096
+raw_products,product_id,32951,32951
+raw_sellers,seller_id,3095,3095
+raw_category_translation,product_category_name,71,71

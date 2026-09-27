@@ -1,0 +1,11 @@
+check_name,rows_failing
+order_items without order,0
+order_items without product,0
+order_items without seller,0
+payments without order,0
+reviews without order,0
+orders without customer,0
+orders with no items,775
+orders with no payment,1
+orders with no review,768
+products with category missing from translation,13

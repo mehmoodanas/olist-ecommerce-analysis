@@ -209,6 +209,24 @@ SELECT 'order_reviews.review_score',
 FROM raw_order_reviews;
 
 
+-- name: join_inflation_example
+-- Joining two one-to-many tables (items and payments) on order_id repeats rows:
+-- an order with 2 items and 3 payments becomes 6 rows. Totals then grow.
+SELECT 'item price' AS measure,
+       (SELECT ROUND(SUM(CAST(price AS REAL)), 2) FROM raw_order_items) AS correct_total,
+       ROUND(SUM(CAST(i.price AS REAL)), 2) AS total_after_join,
+       COUNT(*) AS rows_after_join
+FROM raw_order_items AS i
+JOIN raw_order_payments AS p ON p.order_id = i.order_id
+UNION ALL
+SELECT 'payment value',
+       (SELECT ROUND(SUM(CAST(payment_value AS REAL)), 2) FROM raw_order_payments),
+       ROUND(SUM(CAST(p.payment_value AS REAL)), 2),
+       COUNT(*)
+FROM raw_order_items AS i
+JOIN raw_order_payments AS p ON p.order_id = i.order_id;
+
+
 -- name: payment_types
 SELECT payment_type, COUNT(*) AS payment_rows
 FROM raw_order_payments

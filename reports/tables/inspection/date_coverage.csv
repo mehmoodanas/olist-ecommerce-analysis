@@ -1,0 +1,5 @@
+column_name,min_value,max_value
+order_purchase_timestamp,2016-09-04 21:15:19,2018-10-17 17:30:18
+order_delivered_customer_date,2016-10-11 13:46:32,2018-10-17 13:22:46
+order_estimated_delivery_date,2016-09-30 00:00:00,2018-11-12 00:00:00
+review_creation_date,2016-10-02 00:00:00,2018-08-31 00:00:00
