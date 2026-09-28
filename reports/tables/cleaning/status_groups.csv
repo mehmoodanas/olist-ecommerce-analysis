@@ -1,0 +1,9 @@
+status_group,order_status,orders,orders_with_items,orders_with_delivery_date,valid_for_delivery_metrics
+delivered,delivered,96478,96478,96470,96470
+in_progress,shipped,1107,1106,0,0
+in_progress,invoiced,314,312,0,0
+in_progress,processing,301,301,0,0
+in_progress,created,5,0,0,0
+in_progress,approved,2,2,0,0
+not_fulfilled,canceled,625,461,6,0
+not_fulfilled,unavailable,609,6,0,0

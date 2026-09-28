@@ -1,0 +1,4 @@
+rule,order_items,item_price_total
+no category -> unknown,1603,179535.28
+translated by hand,24,5514.48
+translated from file,111023,13406593.94

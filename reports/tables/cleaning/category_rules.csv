@@ -1,0 +1,4 @@
+rule,products,categories
+no category -> unknown,610,1
+translated by hand,13,2
+translated from file,32328,71

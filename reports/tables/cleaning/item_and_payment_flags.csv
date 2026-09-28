@@ -1,0 +1,5 @@
+flag,rows_flagged
+order items with zero freight,383
+payments with zero value,9
+payments with zero instalments,2
+payments with type not_defined,3

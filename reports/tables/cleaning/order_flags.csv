@@ -1,0 +1,9 @@
+flag,orders
+delivered status but no delivery date,8
+not delivered status but has delivery date,6
+missing approval timestamp,160
+handed to carrier before purchase,166
+delivered before handed to carrier,23
+no items,775
+no payment record,1
+no review,768

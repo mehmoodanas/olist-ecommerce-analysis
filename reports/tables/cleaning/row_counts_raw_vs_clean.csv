@@ -1,0 +1,8 @@
+entity,raw_rows,clean_rows
+orders,99441,99441
+order_items,112650,112650
+order_payments,103886,103886
+order_reviews,99224,99224
+customers,99441,99441
+products,32951,32951
+sellers,3095,3095
