@@ -85,6 +85,14 @@ WHERE p.flag_type_not_defined = 1
 GROUP BY o.order_status;
 
 
+-- name: product_flags
+SELECT 'products with no category' AS flag, SUM(flag_missing_category) AS products
+FROM clean_products
+UNION ALL SELECT 'products with hand-translated category', SUM(flag_manual_translation) FROM clean_products
+UNION ALL SELECT 'products with weight of 0 g', SUM(flag_zero_weight) FROM clean_products
+UNION ALL SELECT 'products with no size or weight', SUM(product_weight_g IS NULL) FROM clean_products;
+
+
 -- name: category_rules
 SELECT CASE
            WHEN flag_missing_category = 1 THEN 'no category -> unknown'

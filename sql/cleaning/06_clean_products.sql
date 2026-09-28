@@ -12,6 +12,8 @@
 -- Other rules:
 -- * Misspelled source columns are renamed (product_name_lenght -> product_name_length).
 -- * Size and weight columns are converted to numbers; 2 products have none and stay NULL.
+-- * A weight of 0 g is not possible for a shipped product. The value is kept and
+--   flagged; weight is not used to answer the business questions.
 
 DROP TABLE IF EXISTS manual_category_translation;
 
@@ -40,6 +42,7 @@ SELECT
     (p.product_category_name IS NULL) AS flag_missing_category,
     (t.product_category_name IS NULL AND m.product_category_name IS NOT NULL)
         AS flag_manual_translation,
+    COALESCE(CAST(p.product_weight_g AS REAL) = 0, 0) AS flag_zero_weight,
     CAST(p.product_name_lenght AS INTEGER)        AS product_name_length,
     CAST(p.product_description_lenght AS INTEGER) AS product_description_length,
     CAST(p.product_photos_qty AS INTEGER)         AS product_photos_qty,
