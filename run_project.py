@@ -10,6 +10,7 @@ Steps:
     4. Summarise and check the cleaning     (sql/inspection/cleaning_summary.sql)
     5. Build reporting models               (sql/models/*.sql)
     6. Validate the models                  (sql/validation/*.sql)
+    7. Run the analysis queries             (sql/analysis/*.sql)
 
 Every step rebuilds its tables and output files, so the script is safe to rerun.
 It stops with an error if a check fails.
@@ -26,7 +27,7 @@ from load_raw import load_raw_tables  # noqa: E402
 from profile_raw import profile_raw  # noqa: E402
 from sql_utils import SQL_DIR, TABLES_DIR, connect, run_named_queries, run_scripts_in_folder  # noqa: E402
 
-STEPS = 6
+STEPS = 7
 # money totals are compared after rounding, so allow one cent of difference
 TOLERANCE = 0.01
 
@@ -66,6 +67,17 @@ def validate_models(conn):
     print(f"Check passed: all {len(checks)} validation checks (see {out_dir / 'validation_summary.csv'}).")
 
 
+def run_analysis(conn):
+    """Run every named query in sql/analysis/ and save it to reports/tables/analysis/."""
+    out_dir = TABLES_DIR / "analysis"
+    count = 0
+    for sql_file in sorted((SQL_DIR / "analysis").glob("*.sql")):
+        results = run_named_queries(conn, sql_file, out_dir, verbose=False)
+        count += len(results)
+        print(f"Ran {sql_file.name}: {', '.join(results)}")
+    print(f"Saved {count} result tables to {out_dir}")
+
+
 def main():
     step(1, "Loading raw CSV files")
     load_raw_tables()
@@ -89,6 +101,9 @@ def main():
 
         step(6, "Validating models")
         validate_models(conn)
+
+        step(7, "Running analysis queries")
+        run_analysis(conn)
 
     print("\nDone.")
 

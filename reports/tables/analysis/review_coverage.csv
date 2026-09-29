@@ -1,0 +1,4 @@
+status_group,orders,orders_with_review,pct_with_review,avg_review_score
+delivered,96478,95832,99.33,4.156
+in_progress,1729,1641,94.91,1.798
+not_fulfilled,1234,1200,97.24,1.663

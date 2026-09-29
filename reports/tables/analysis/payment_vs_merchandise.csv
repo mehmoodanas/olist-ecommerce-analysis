@@ -1,0 +1,7 @@
+main_payment_type,paid_in_instalments,delivered_orders,orders_matching,orders_paid_more,orders_paid_less,net_difference
+credit_card,1,49467,49155,254,58,2892.6
+credit_card,0,23358,23335,9,14,-22.31
+boleto,0,19191,19165,16,10,-0.13
+voucher,0,2783,2777,4,2,4.05
+debit_card,0,1484,1474,1,9,-51.99
+voucher,1,194,193,1,0,9.26
