@@ -118,5 +118,5 @@ Item prices are skewed: the median is 74.99, the 75th percentile 134.90, the 99t
 3. **610 products (1,603 order items, 179,535.28 in item price) have no category.** Category shares are calculated with `unknown` as its own group. The true category of these sales is unknown.
 4. **Boundary months are incomplete.** 2016-09 to 2016-12 and 2018-09 to 2018-10 have very few orders (2016-11 has none). They will be excluded from growth comparisons.
 5. **Currency is not stated** in the files. Values are assumed to be Brazilian reais (BRL).
-6. **Payment value and merchandise value measure different things.** Payments are expected to cover freight and may include other charges. The difference is investigated in the analysis stage, not forced to match.
+6. **Payment value and merchandise value measure different things.** Payments are expected to cover freight and may include other charges. The analysis found that payment equals merchandise + freight to the cent for 96,099 of 96,477 delivered orders with a payment record (99.61%); the net difference of 2,831.48 comes mostly from credit-card orders paid in instalments (see `docs/metric_definitions.md`). The values are kept separate, not forced to match.
 7. The data is **historical and anonymised**. It describes Olist's marketplace between 2016 and 2018, not its current state.

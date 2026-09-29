@@ -194,7 +194,7 @@ The joined result has 117,601 rows instead of 112,650 items or 103,886 payments.
 
 **Rule for this project:** aggregate items, payments and reviews to one row per order *before* joining them to the orders table. Validation queries will compare totals before and after every join.
 
-Note also that item price plus freight and payment value measure different things (payment records may include vouchers or instalment charges, and one order has no payment record); the size of the difference will be investigated in the analysis stage. They are kept as separate measures and not forced to match.
+Note also that item price plus freight and payment value measure different things (payment records may include vouchers or instalment charges, and one order has no payment record); the analysis (`payment_vs_merchandise`) found they match to the cent for 99.61% of delivered orders. They are kept as separate measures and not forced to match.
 
 ## Reporting models
 
