@@ -64,7 +64,7 @@ raw CSVs ──> raw_* tables ──> clean_* tables ──> model_* tables ─�
 | [`sql/analysis/`](sql/analysis/) | 26 commented analysis queries in 7 files |
 | [`src/`](src/) | Python loader, SQL helpers and chart script |
 | [`reports/`](reports/) | [Findings](reports/findings.md), [data quality report](reports/data_quality.md), [figures](reports/figures/), [result tables](reports/tables/) |
-| [`docs/`](docs/) | [Data dictionary](docs/data_dictionary.md), [metric definitions](docs/metric_definitions.md) |
+| [`docs/`](docs/) | [Data dictionary](docs/data_dictionary.md), [metric definitions](docs/metric_definitions.md), [interview notes](docs/interview_notes.md) |
 
 Key decisions (details in the linked documents):
 
