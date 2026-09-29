@@ -195,3 +195,24 @@ The joined result has 117,601 rows instead of 112,650 items or 103,886 payments.
 **Rule for this project:** aggregate items, payments and reviews to one row per order *before* joining them to the orders table. Validation queries will compare totals before and after every join.
 
 Note also that item price plus freight and payment value measure different things (payment records may include vouchers or instalment charges, and one order has no payment record); the size of the difference will be investigated in the analysis stage. They are kept as separate measures and not forced to match.
+
+## Reporting models
+
+The analysis queries are built on five reporting models created by [`sql/models/`](../sql/models/). Items, payments and reviews are aggregated to one row per order **before** they are joined, so no join can multiply rows.
+
+| Model | Grain (one row = ) | Rows | Main use |
+|---|---|---|---|
+| `model_order_items` | one order item | 112,650 | Category and seller analysis |
+| `model_orders` | one order | 99,441 | Sales, order value, delivery, reviews |
+| `model_customers` | one person (`customer_unique_id`) | 96,096 | Repeat purchasing |
+| `model_monthly_sales` | one purchase month | 25 | Trends and growth |
+| `model_delivery_performance` | one customer state | 27 | Delivery comparison by state |
+
+Key rules in `model_orders`:
+
+- `merchandise_value` = sum of item prices; `freight_value` and `payment_value` are separate columns.
+- **Multiple reviews per order:** 547 orders have 2 or 3 reviews, and in 202 of them the scores differ. The review with the latest `review_answer_ts` is kept (the customer's most recent opinion). No order has two reviews answered at the same time, so the choice is unique. `review_count` keeps the original number.
+- `delivery_days` = purchase to customer delivery, in days. `is_late` = 1 when the delivery **date** is after the estimated delivery **date**. These columns are filled only when `is_valid_delivery = 1`.
+- `customer_state` in `model_customers` comes from the person's first order (39 people ordered from more than one state).
+
+The models are checked by 41 validation queries in [`sql/validation/`](../sql/validation/) (key uniqueness, required fields, referential integrity, row counts and money totals before and after joins, timestamp order). The results are in [`reports/tables/validation/validation_summary.csv`](../reports/tables/validation/validation_summary.csv). `run_project.py` stops if any check fails.
