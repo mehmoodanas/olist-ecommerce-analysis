@@ -11,6 +11,7 @@ Steps:
     5. Build reporting models               (sql/models/*.sql)
     6. Validate the models                  (sql/validation/*.sql)
     7. Run the analysis queries             (sql/analysis/*.sql)
+    8. Create the charts                    (src/make_charts.py)
 
 Every step rebuilds its tables and output files, so the script is safe to rerun.
 It stops with an error if a check fails.
@@ -24,10 +25,11 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent / "src"))
 
 from load_raw import load_raw_tables  # noqa: E402
+from make_charts import make_charts  # noqa: E402
 from profile_raw import profile_raw  # noqa: E402
 from sql_utils import SQL_DIR, TABLES_DIR, connect, run_named_queries, run_scripts_in_folder  # noqa: E402
 
-STEPS = 7
+STEPS = 8
 # money totals are compared after rounding, so allow one cent of difference
 TOLERANCE = 0.01
 
@@ -104,6 +106,9 @@ def main():
 
         step(7, "Running analysis queries")
         run_analysis(conn)
+
+    step(8, "Creating charts")
+    make_charts()
 
     print("\nDone.")
 
