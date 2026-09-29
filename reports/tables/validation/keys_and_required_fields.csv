@@ -1,0 +1,11 @@
+check_name,expected,actual
+model_orders: duplicate order_id,0,0
+model_order_items: duplicate order_id + order_item_id,0,0
+model_customers: duplicate customer_unique_id,0,0
+model_monthly_sales: duplicate purchase_month,0,0
+model_delivery_performance: duplicate customer_state,0,0
+"model_orders: missing order_id, customer, state, status or purchase date",0,0
+"model_order_items: missing price, freight, category or seller state",0,0
+model_customers: missing customer_state,0,0
+model_orders: delivered orders without items,0,0
+model_orders: delivery columns filled only for valid deliveries,0,0

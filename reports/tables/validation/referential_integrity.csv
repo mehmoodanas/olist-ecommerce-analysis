@@ -1,0 +1,10 @@
+check_name,expected,actual
+clean_order_items -> clean_orders,0,0
+clean_order_items -> clean_products,0,0
+clean_order_items -> clean_sellers,0,0
+clean_order_payments -> clean_orders,0,0
+clean_order_reviews -> clean_orders,0,0
+clean_orders -> clean_customers,0,0
+model_order_items -> model_orders,0,0
+model_orders -> model_customers,0,0
+model_orders chosen review -> clean_order_reviews,0,0

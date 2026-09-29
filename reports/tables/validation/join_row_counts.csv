@@ -1,0 +1,8 @@
+check_name,expected,actual
+model_orders rows = clean_orders rows,99441,99441
+model_order_items rows = clean_order_items rows,112650,112650
+model_customers rows = distinct customer_unique_id,96096,96096
+orders with a chosen review = orders with any review,98673,98673
+sum of review_count = review rows,99224,99224
+sum of item_count = item rows,112650,112650
+sum of payment_count = payment rows,103886,103886

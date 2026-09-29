@@ -1,0 +1,10 @@
+check_name,expected,actual
+item price: clean_order_items vs model_orders,13591643.7,13591643.7
+item price: clean_order_items vs model_order_items,13591643.7,13591643.7
+freight: clean_order_items vs model_orders,2251909.54,2251909.54
+payment value: clean_order_payments vs model_orders,16008872.12,16008872.12
+delivered merchandise: model_orders vs model_monthly_sales,13221498.11,13221498.11
+delivered merchandise: model_orders vs model_customers,13221498.11,13221498.11
+delivered orders: model_orders vs model_monthly_sales,96478.0,96478.0
+delivered orders: model_orders vs model_customers,96478.0,96478.0
+valid deliveries: model_orders vs model_delivery_performance,96470.0,96470.0

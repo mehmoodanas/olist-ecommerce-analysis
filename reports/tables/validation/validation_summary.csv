@@ -1,0 +1,42 @@
+check_name,expected,actual,query,passed
+model_orders: duplicate order_id,0.0,0.0,keys_and_required_fields,True
+model_order_items: duplicate order_id + order_item_id,0.0,0.0,keys_and_required_fields,True
+model_customers: duplicate customer_unique_id,0.0,0.0,keys_and_required_fields,True
+model_monthly_sales: duplicate purchase_month,0.0,0.0,keys_and_required_fields,True
+model_delivery_performance: duplicate customer_state,0.0,0.0,keys_and_required_fields,True
+"model_orders: missing order_id, customer, state, status or purchase date",0.0,0.0,keys_and_required_fields,True
+"model_order_items: missing price, freight, category or seller state",0.0,0.0,keys_and_required_fields,True
+model_customers: missing customer_state,0.0,0.0,keys_and_required_fields,True
+model_orders: delivered orders without items,0.0,0.0,keys_and_required_fields,True
+model_orders: delivery columns filled only for valid deliveries,0.0,0.0,keys_and_required_fields,True
+clean_order_items -> clean_orders,0.0,0.0,referential_integrity,True
+clean_order_items -> clean_products,0.0,0.0,referential_integrity,True
+clean_order_items -> clean_sellers,0.0,0.0,referential_integrity,True
+clean_order_payments -> clean_orders,0.0,0.0,referential_integrity,True
+clean_order_reviews -> clean_orders,0.0,0.0,referential_integrity,True
+clean_orders -> clean_customers,0.0,0.0,referential_integrity,True
+model_order_items -> model_orders,0.0,0.0,referential_integrity,True
+model_orders -> model_customers,0.0,0.0,referential_integrity,True
+model_orders chosen review -> clean_order_reviews,0.0,0.0,referential_integrity,True
+model_orders rows = clean_orders rows,99441.0,99441.0,join_row_counts,True
+model_order_items rows = clean_order_items rows,112650.0,112650.0,join_row_counts,True
+model_customers rows = distinct customer_unique_id,96096.0,96096.0,join_row_counts,True
+orders with a chosen review = orders with any review,98673.0,98673.0,join_row_counts,True
+sum of review_count = review rows,99224.0,99224.0,join_row_counts,True
+sum of item_count = item rows,112650.0,112650.0,join_row_counts,True
+sum of payment_count = payment rows,103886.0,103886.0,join_row_counts,True
+item price: clean_order_items vs model_orders,13591643.7,13591643.7,join_totals,True
+item price: clean_order_items vs model_order_items,13591643.7,13591643.7,join_totals,True
+freight: clean_order_items vs model_orders,2251909.54,2251909.54,join_totals,True
+payment value: clean_order_payments vs model_orders,16008872.12,16008872.12,join_totals,True
+delivered merchandise: model_orders vs model_monthly_sales,13221498.11,13221498.11,join_totals,True
+delivered merchandise: model_orders vs model_customers,13221498.11,13221498.11,join_totals,True
+delivered orders: model_orders vs model_monthly_sales,96478.0,96478.0,join_totals,True
+delivered orders: model_orders vs model_customers,96478.0,96478.0,join_totals,True
+valid deliveries: model_orders vs model_delivery_performance,96470.0,96470.0,join_totals,True
+valid deliveries with negative delivery time,0.0,0.0,timestamp_sequences,True
+any order delivered before purchase,0.0,0.0,timestamp_sequences,True
+any order approved before purchase,0.0,0.0,timestamp_sequences,True
+carrier before purchase: flagged = found,166.0,166.0,timestamp_sequences,True
+delivered before carrier: flagged = found,23.0,23.0,timestamp_sequences,True
+orders purchased outside the data period (2016-09-04 to 2018-10-17),0.0,0.0,timestamp_sequences,True

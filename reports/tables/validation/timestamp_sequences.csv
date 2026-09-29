@@ -1,0 +1,7 @@
+check_name,expected,actual
+valid deliveries with negative delivery time,0,0
+any order delivered before purchase,0,0
+any order approved before purchase,0,0
+carrier before purchase: flagged = found,166,166
+delivered before carrier: flagged = found,23,23
+orders purchased outside the data period (2016-09-04 to 2018-10-17),0,0
