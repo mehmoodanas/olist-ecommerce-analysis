@@ -33,8 +33,12 @@ WITH orders_numbered AS (
                                         ORDER BY purchase_ts, order_id) END AS delivered_order_number
     FROM model_orders
 ),
+-- Follow-up ends at the last DELIVERED purchase (2018-08-29). Later orders in
+-- the data were never delivered, so they cannot count as repeat purchases.
 data_end AS (
-    SELECT MAX(purchase_ts) AS last_purchase_in_data FROM model_orders
+    SELECT MAX(purchase_ts) AS last_purchase_in_data
+    FROM model_orders
+    WHERE status_group = 'delivered'
 )
 SELECT
     n.customer_unique_id,
