@@ -33,7 +33,9 @@ def test_run_named_queries_saves_csv_and_returns_results(tmp_path):
     assert saved["n"].tolist() == [3]
 
 
-def test_run_scripts_in_folder_runs_in_file_name_order(tmp_path):
+def test_run_scripts_in_folder_runs_in_file_name_order(tmp_path, monkeypatch):
+    # the helper prints paths relative to the project folder
+    monkeypatch.setattr(sql_utils, "PROJECT_DIR", tmp_path)
     (tmp_path / "02_second.sql").write_text("INSERT INTO t VALUES ('second');", encoding="utf-8")
     (tmp_path / "01_first.sql").write_text(
         "CREATE TABLE t (v TEXT); INSERT INTO t VALUES ('first');", encoding="utf-8"
