@@ -40,8 +40,7 @@ def test_named_query_files_have_unique_complete_queries(folder):
             assert name not in seen, f"query name {name} used in {seen[name]} and {sql_file.name}"
             seen[name] = sql_file.name
             assert query, f"{sql_file.name}:{name} is empty"
-            assert sqlite3.complete_statement(query + "
-;")
+            assert sqlite3.complete_statement(query + "\n;")
 
 
 def test_validation_queries_return_check_columns():
