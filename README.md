@@ -115,3 +115,7 @@ python -m pytest
 ```
 
 GitHub Actions runs the same tests on every push and pull request (`.github/workflows/ci.yml`).
+
+## License
+
+The code, SQL and written reports in this repository are released under the [MIT License](LICENSE). The Olist dataset is not included and keeps its own licence (CC BY-NC-SA 4.0); see [data/README.md](data/README.md).
