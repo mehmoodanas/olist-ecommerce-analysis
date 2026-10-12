@@ -104,3 +104,14 @@ This rebuilds the SQLite database (`data/processed/olist.db`), all tables in `re
 ## Contribution note
 
 Project designed, reviewed and documented by Anas Mehmood as a learning portfolio project. It uses a public dataset and has no connection with Olist.
+
+## Tests and CI
+
+Unit tests cover the SQL helpers, the raw loader and the structure of the SQL files, using small synthetic data (the Olist files are not needed):
+
+```bash
+pip install -r requirements-dev.txt
+python -m pytest
+```
+
+GitHub Actions runs the same tests on every push and pull request (`.github/workflows/ci.yml`).
